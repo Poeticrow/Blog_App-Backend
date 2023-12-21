@@ -2,6 +2,8 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const postsRouter = require("./src/routes/postsRoutes");
+const authRouter = require("./src/routes/authRoutes");
+
 const { PORT, MONGODB_URL } = require("./src/configs/constants");
 const mongoose = require("mongoose");
 
@@ -18,8 +20,8 @@ app.get("/api/", (req, res) => {
   });
 });
 
-app.use("/api/post", postsRouter);
-// app.use("/api/user", userRoutes);
+app.use("/api/v1/post", postsRouter);
+app.use("/api/v1/auth", authRouter);
 app.use("*", (req, res) => {
   return res.status(404).json({ error: "Route not found", statusText: "fail" });
 });

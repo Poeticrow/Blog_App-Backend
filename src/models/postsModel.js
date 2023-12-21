@@ -17,7 +17,8 @@ const PostSchema = new Schema(
       enum: constants.postCategories,
     },
     createdBy: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
     body: {
       type: String,
